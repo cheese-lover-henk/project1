@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bvabij88gqx"]
+
+[ext_resource type="Script" uid="uid://b63adwbnip5n0" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://dff8w8avmalxi" path="res://ui/testhud/test_hud.tscn" id="2_abrql"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
+radius = 0.35
+
+[node name="Player" type="CharacterBody3D" unique_id=1525292286]
+script = ExtResource("1_symyc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=459714823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_sfv1e")
+
+[node name="HeadPivotPoint" type="Node3D" parent="." unique_id=1731621891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+
+[node name="Camera3D" type="Camera3D" parent="HeadPivotPoint" unique_id=1711301791]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HeadPivotPoint/Camera3D" unique_id=348021600]
+
+[node name="testHUD" parent="HeadPivotPoint/Camera3D/CanvasLayer" unique_id=1584449824 instance=ExtResource("2_abrql")]

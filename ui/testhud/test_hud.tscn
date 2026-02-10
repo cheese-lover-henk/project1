@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dff8w8avmalxi"]
+
+[ext_resource type="Texture2D" uid="uid://dg4l1ide7i6gw" path="res://ui/assets/crosshair-dot.png" id="1_2brhw"]
+[ext_resource type="Script" uid="uid://cj4lx286kyw7x" path="res://ui/testhud/test_hud.gd" id="1_he8go"]
+[ext_resource type="Script" uid="uid://dmfjvm2r858ut" path="res://ui/testhud/margin_container.gd" id="2_ew4a0"]
+
+[node name="testHUD" type="Control" unique_id=1584449824]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_he8go")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=179782766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=1601590504]
+layout_mode = 2
+texture = ExtResource("1_2brhw")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=884457339]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ew4a0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=633918669]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1796335061]
+layout_mode = 2
