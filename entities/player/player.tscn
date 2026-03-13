@@ -1,23 +1,90 @@
 [gd_scene format=3 uid="uid://bvabij88gqx"]
 
 [ext_resource type="Script" uid="uid://b63adwbnip5n0" path="res://entities/player/player.gd" id="1_symyc"]
-[ext_resource type="PackedScene" uid="uid://dff8w8avmalxi" path="res://ui/testhud/test_hud.tscn" id="2_abrql"]
+[ext_resource type="Shape3D" uid="uid://c64gvk7sv5m3r" path="res://exports/temp.tres" id="2_8fjmc"]
+[ext_resource type="Texture2D" uid="uid://capw5ko2djogp" path="res://entities/shared/12824.jpg" id="3_bls4j"]
+[ext_resource type="Script" uid="uid://bsuq66n3ooeu3" path="res://entities/player/flashlight_flicker.gd" id="3_fkugw"]
+[ext_resource type="PackedScene" uid="uid://catoiwxvmr8cb" path="res://entities/shared/fast_run.tscn" id="3_sglur"]
+[ext_resource type="PackedScene" uid="uid://xsocxgf134tx" path="res://menus/ingame HUD/hud.tscn" id="5_8fjmc"]
+[ext_resource type="PackedScene" uid="uid://dff8w8avmalxi" path="res://ui/testhud/test_hud.tscn" id="6_qiwj3"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bls4j"]
 radius = 0.35
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sglur"]
+radius = 0.45
+height = 1.1
 
 [node name="Player" type="CharacterBody3D" unique_id=1525292286]
+floor_max_angle = 0.9599311
 script = ExtResource("1_symyc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=459714823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_sfv1e")
+shape = ExtResource("2_8fjmc")
+
+[node name="CollisionShapeCrouch" type="CollisionShape3D" parent="." unique_id=1438149388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_bls4j")
+
+[node name="CollisionShapeVault" type="CollisionShape3D" parent="." unique_id=1260734354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("CapsuleShape3D_sglur")
+disabled = true
 
 [node name="HeadPivotPoint" type="Node3D" parent="." unique_id=1731621891]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+
+[node name="CameraPositionUpright" type="Marker3D" parent="HeadPivotPoint" unique_id=1664952610]
+
+[node name="CameraPositionCrouch" type="Marker3D" parent="HeadPivotPoint" unique_id=1713319564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.010915, 0)
+
+[node name="CameraPositionVault" type="Marker3D" parent="HeadPivotPoint" unique_id=239509148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="HeadPivotPoint" unique_id=1725057144]
+light_color = Color(1, 1, 0.8745098, 1)
+light_energy = 4.0
+light_projector = ExtResource("3_bls4j")
+light_size = 1.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 77.39557
+spot_angle = 48.884216
+spot_angle_attenuation = 0.81225395
+script = ExtResource("3_fkugw")
+
+[node name="Timer" type="Timer" parent="HeadPivotPoint/SpotLight3D" unique_id=1780957336]
+one_shot = true
 
 [node name="Camera3D" type="Camera3D" parent="HeadPivotPoint" unique_id=1711301791]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="HeadPivotPoint/Camera3D" unique_id=348021600]
 
-[node name="testHUD" parent="HeadPivotPoint/Camera3D/CanvasLayer" unique_id=1584449824 instance=ExtResource("2_abrql")]
+[node name="HUD" parent="HeadPivotPoint/Camera3D/CanvasLayer" unique_id=1811164742 instance=ExtResource("5_8fjmc")]
+
+[node name="testHUD" parent="HeadPivotPoint/Camera3D/CanvasLayer" unique_id=1584449824 instance=ExtResource("6_qiwj3")]
+visible = false
+
+[node name="visionRayCast" type="RayCast3D" parent="HeadPivotPoint/Camera3D" unique_id=908947337]
+target_position = Vector3(0, 0, -1.25)
+
+[node name="Fast Run" parent="." unique_id=791962226 instance=ExtResource("3_sglur")]
+transform = Transform3D(-65, 0, -5.68248e-06, 0, 65, 0, 5.68248e-06, 0, -65, 0, 0, 0.53310347)
+visible = false
+
+[node name="raycasts" type="Node3D" parent="." unique_id=794622118]
+
+[node name="feetcast_forward" type="RayCast3D" parent="raycasts" unique_id=883752879]
+target_position = Vector3(0, 0, -1)
+debug_shape_thickness = 5
+
+[node name="crouching_headbumpcast" type="RayCast3D" parent="raycasts" unique_id=1466942100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+target_position = Vector3(0, 1.05, 0)
+
+[node name="downward" type="RayCast3D" parent="raycasts" unique_id=851746533]
+
+[connection signal="timeout" from="HeadPivotPoint/SpotLight3D/Timer" to="HeadPivotPoint/SpotLight3D" method="_on_timer_timeout"]

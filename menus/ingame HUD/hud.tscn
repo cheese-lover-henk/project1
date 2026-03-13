@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://xsocxgf134tx"]
+
+[ext_resource type="Texture2D" uid="uid://dg4l1ide7i6gw" path="res://ui/assets/crosshair-dot.png" id="1_ilfsm"]
+[ext_resource type="PackedScene" uid="uid://dl5310lo1okcd" path="res://menus/ingame HUD/pausemenu.tscn" id="2_t0yey"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilfsm"]
+font_size = 26
+
+[node name="HUD" type="Control" unique_id=1811164742]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=529224652]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=623501300]
+layout_mode = 2
+texture = ExtResource("1_ilfsm")
+
+[node name="Label" type="Label" parent="." unique_id=1318996926]
+layout_mode = 0
+offset_left = 1053.0
+offset_right = 1520.0
+offset_bottom = 99.0
+label_settings = SubResource("LabelSettings_ilfsm")
+horizontal_alignment = 2
+
+[node name="Node" type="Node" parent="." unique_id=533015380]
+
+[node name="PAUSEMENU" parent="Node" unique_id=1275210326 instance=ExtResource("2_t0yey")]
+visible = false

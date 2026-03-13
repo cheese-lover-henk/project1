@@ -11,14 +11,21 @@ config_version=5
 [application]
 
 config/name="project1"
-run/main_scene="uid://de5jlw8wcmwfh"
+run/main_scene="uid://c7noqhf6bblos"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*uid://c5nbqpimriqfs"
+
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
 
 [display]
 
-window/size/viewport_width=1100
-window/size/viewport_height=700
+window/size/viewport_width=1520
+window/size/viewport_height=880
 window/stretch/mode="viewport"
 
 [file_customization]
@@ -27,6 +34,7 @@ folder_colors={
 "res://entities/": "red",
 "res://menus/": "green",
 "res://scenes/": "yellow",
+"res://tools/": "orange",
 "res://ui/": "blue"
 }
 
@@ -70,6 +78,16 @@ crouch={
 esc={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+flashlight={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":84,"key_label":0,"unicode":116,"location":0,"echo":false,"script":null)
+]
+}
+debuginfo={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194334,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 

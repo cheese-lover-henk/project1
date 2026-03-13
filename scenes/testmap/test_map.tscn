@@ -1,33 +1,301 @@
 [gd_scene format=3 uid="uid://bryncnktjsejf"]
 
-[ext_resource type="Material" uid="uid://b47r78fj3cocx" path="res://scenes/shared/materials/prototype/darkgray_6.tres" id="1_u66e7"]
+[ext_resource type="Material" uid="uid://b47r78fj3cocx" path="res://scenes/shared/materials/prototype/darkgray_triplanar_6.tres" id="1_u66e7"]
+[ext_resource type="Script" uid="uid://dtmaxgo70hnre" path="res://scenes/testmap/test_map.gd" id="1_x7nxn"]
+[ext_resource type="Material" uid="uid://cxytk2kcpehw0" path="res://scenes/shared/materials/prototype/red_triplanar6.tres" id="2_6swfn"]
+[ext_resource type="Material" uid="uid://cs5nopjfdnym4" path="res://scenes/shared/materials/prototype/green_triplanar6.tres" id="3_qlfxs"]
+[ext_resource type="Material" uid="uid://ccn2eg7su8my1" path="res://scenes/shared/materials/prototype/darkgray_triplanar_12.tres" id="4_mvwjs"]
+[ext_resource type="Material" uid="uid://cl2h6k6xq0idy" path="res://scenes/shared/materials/prototype/purple_triplanar5.tres" id="5_x6em0"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u66e7"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_6swfn"]
-sky_material = SubResource("ProceduralSkyMaterial_u66e7")
-
-[sub_resource type="Environment" id="Environment_qlfxs"]
-background_mode = 2
-sky = SubResource("Sky_6swfn")
-tonemap_mode = 2
-glow_enabled = true
+[sub_resource type="Environment" id="Environment_f43t3"]
+ambient_light_energy = 0.5
 
 [node name="TestMap" type="Node3D" unique_id=1864558569]
+script = ExtResource("1_x7nxn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1164208158]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.25881904, -0.92020035, -0.29367346, 0, -0.3040331, 0.9526616, -0.965926, 0.24656695, 0.078689605, 0, 0, 0)
+light_energy = 0.6
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1741119804]
+transform = Transform3D(0.022183329, -0.9814062, 0.19065642, -0.7147441, 0.11777267, 0.6893987, -0.69903433, -0.15156373, -0.6988418, 0, 0, 0)
+light_energy = 0.6
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=365569272]
-environment = SubResource("Environment_qlfxs")
+environment = SubResource("Environment_f43t3")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=540671254]
+[node name="GEOMETRY" type="CSGCombiner3D" parent="." unique_id=540671254]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-material_override = ExtResource("1_u66e7")
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=31920390]
-size = Vector3(20, 2, 20)
+[node name="green n red structure" type="CSGCombiner3D" parent="GEOMETRY" unique_id=1433829049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 9)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/green n red structure" unique_id=318148382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 2)
+size = Vector3(7, 1, 3)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/green n red structure" unique_id=814267268]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.5, 2.5, 1.5)
+size = Vector3(6, 1, 2)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="GEOMETRY/green n red structure" unique_id=1838958188]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 3.5, 1)
+size = Vector3(5, 1, 1)
+material = ExtResource("2_6swfn")
+
+[node name="bigramp" type="CSGPolygon3D" parent="GEOMETRY/green n red structure" unique_id=307321290]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 1, 0.5)
+polygon = PackedVector2Array(0, 0, 0, 3, 6, 0)
+depth = 3.0
+material = ExtResource("3_qlfxs")
+
+[node name="bigramp2" type="CSGPolygon3D" parent="GEOMETRY/green n red structure" unique_id=607802527]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5, 1, 0.5)
+polygon = PackedVector2Array(0, 0, 0, 3, 4, 0)
+depth = 2.0
+material = ExtResource("3_qlfxs")
+
+[node name="tunnel" type="CSGCombiner3D" parent="GEOMETRY/green n red structure" unique_id=1108720191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+operation = 2
+
+[node name="cylinder" type="CSGCylinder3D" parent="GEOMETRY/green n red structure/tunnel" unique_id=700913014]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+radius = 1.3
+height = 6.0
+sides = 16
+material = ExtResource("3_qlfxs")
+
+[node name="tunnel floor" type="CSGBox3D" parent="GEOMETRY/green n red structure/tunnel" unique_id=286551550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+operation = 2
+size = Vector3(7, 1, 3)
+material = ExtResource("1_u66e7")
+
+[node name="FLOOR" type="CSGBox3D" parent="GEOMETRY" unique_id=31920390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.5)
+size = Vector3(50, 2, 39)
+material = ExtResource("1_u66e7")
+
+[node name="FLOORLOWER" type="CSGBox3D" parent="GEOMETRY" unique_id=1982239037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -39.5)
+size = Vector3(50, 2, 31)
+material = ExtResource("1_u66e7")
+
+[node name="rampfloor" type="CSGPolygon3D" parent="GEOMETRY" unique_id=1583639525]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 25, -4, -14)
+polygon = PackedVector2Array(0, 3, 0, 5, 10, 0, 10, -2)
+depth = 50.0
+material = ExtResource("4_mvwjs")
+
+[node name="HOUS" type="CSGCombiner3D" parent="GEOMETRY" unique_id=850825670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="outer walls and ceiling" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1703723249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 4, -0.5)
+size = Vector3(14, 7, 16)
+material = ExtResource("4_mvwjs")
+
+[node name="subtraction house inside" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1336560112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3, -0.5)
+operation = 2
+size = Vector3(12, 7, 14)
+material = ExtResource("4_mvwjs")
+
+[node name="Door cutout" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1095229717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, -0.5)
+operation = 2
+size = Vector3(1, 3, 2)
+material = ExtResource("5_x6em0")
+
+[node name="window cutout" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=463571598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, -3.5)
+operation = 2
+size = Vector3(1, 2, 2)
+material = ExtResource("5_x6em0")
+
+[node name="window cutout2" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1892381638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, -6.5)
+operation = 2
+size = Vector3(1, 2, 2)
+material = ExtResource("5_x6em0")
+
+[node name="ledge" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1722590025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 4, 4)
+size = Vector3(1, 0.3, 5)
+material = ExtResource("5_x6em0")
+
+[node name="ledge2" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1966008883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 5, 0)
+size = Vector3(1, 0.3, 5)
+material = ExtResource("5_x6em0")
+
+[node name="ledge3" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1227421555]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.394228, 6, -8.999998)
+size = Vector3(2, 0.3, 5)
+material = ExtResource("5_x6em0")
+
+[node name="ledge4" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=1563814959]
+transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, -4.4358997, 5, -9.598072)
+size = Vector3(3, 0.3, 5)
+material = ExtResource("5_x6em0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=203158634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 7)
+size = Vector3(7, 1, 1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/HOUS" unique_id=757038915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 7)
+size = Vector3(1, 7, 1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="GEOMETRY" unique_id=1914019847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, -4)
+radius = 4.0
+radial_segments = 30
+rings = 20
+smooth_faces = false
+material = ExtResource("1_u66e7")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="GEOMETRY" unique_id=1413138515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -9)
+radius = 4.0
+radial_segments = 30
+rings = 20
+smooth_faces = false
+material = ExtResource("1_u66e7")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="GEOMETRY" unique_id=56440643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1, -6)
+radius = 4.0
+radial_segments = 30
+rings = 20
+smooth_faces = false
+material = ExtResource("1_u66e7")
+
+[node name="randomobstacle" type="CSGCombiner3D" parent="GEOMETRY" unique_id=1592420856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/randomobstacle" unique_id=874806880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+size = Vector3(5, 4, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/randomobstacle" unique_id=1929968403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9396973, 0)
+operation = 2
+size = Vector3(3, 2.5454102, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="GEOMETRY/randomobstacle" unique_id=1761309645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6774445, 0)
+operation = 2
+size = Vector3(3, 1.2966614, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="randomobstacle5" type="CSGCombiner3D" parent="GEOMETRY" unique_id=1468534048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -1, -11)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/randomobstacle5" unique_id=2103934075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+size = Vector3(5, 4, 0.4)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/randomobstacle5" unique_id=1998080767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.333496, 0)
+operation = 2
+size = Vector3(3, 1.51, 0.4)
+material = ExtResource("2_6swfn")
+
+[node name="randomobstacle7" type="CSGCombiner3D" parent="GEOMETRY" unique_id=1617236320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -1, -11)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/randomobstacle7" unique_id=1284014419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+size = Vector3(5, 4, 0.4)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="GEOMETRY/randomobstacle7" unique_id=606739651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3)
+size = Vector3(5, 4, 0.4)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/randomobstacle7" unique_id=1420646208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.333496, 0)
+operation = 2
+size = Vector3(3, 1.51, 0.4)
+material = ExtResource("2_6swfn")
+
+[node name="randomobstacle6" type="CSGCombiner3D" parent="GEOMETRY" unique_id=1382560046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1, -11)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/randomobstacle6" unique_id=858161646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.3000002)
+size = Vector3(5, 4, 1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/randomobstacle6" unique_id=181236576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.333496, 0)
+operation = 2
+size = Vector3(3, 1.51, 0.4)
+material = ExtResource("2_6swfn")
+
+[node name="randomobstacle2" type="CSGCombiner3D" parent="GEOMETRY" unique_id=861463521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/randomobstacle2" unique_id=1471645514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3, 0)
+size = Vector3(6, 4, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/randomobstacle2" unique_id=1181891596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.8000002, 0)
+operation = 2
+size = Vector3(2, 2, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="GEOMETRY/randomobstacle2" unique_id=2081642361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.5024903, 0)
+operation = 2
+size = Vector3(2, 1.4, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="GEOMETRY/randomobstacle2" unique_id=494602779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47200012, 3.2, 0.105)
+operation = 2
+polygon = PackedVector2Array(0, 0, 0, 0.6, 2, 0)
+depth = 0.5
+
+[node name="randomobstacle3" type="CSGCombiner3D" parent="GEOMETRY" unique_id=1472990718]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -21, 0, -2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/randomobstacle3" unique_id=1548958000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+size = Vector3(5, 4, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/randomobstacle3" unique_id=847368355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3036804, 0)
+operation = 2
+size = Vector3(3, 1.7102661, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="randomobstacle4" type="CSGCombiner3D" parent="GEOMETRY" unique_id=1004376533]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -23, 0, -8)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GEOMETRY/randomobstacle4" unique_id=1396602129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+size = Vector3(5, 4, 0.1)
+material = ExtResource("2_6swfn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GEOMETRY/randomobstacle4" unique_id=388948563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.333496, 0)
+operation = 2
+size = Vector3(3, 1.3330078, 0.1)
+material = ExtResource("2_6swfn")

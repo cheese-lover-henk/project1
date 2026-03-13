@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://br7anpth3lvlv"]
+
+[ext_resource type="Theme" uid="uid://bq2xaeqbys6v8" path="res://menus/control_node_themes/menu_default_theme.tres" id="1_lcgne"]
+[ext_resource type="Script" uid="uid://dahjs00f5ym8q" path="res://menus/settings/settings_menu.gd" id="1_vauo1"]
+
+[node name="SettingsMenu-CenterContainer" type="CenterContainer" unique_id=402809060]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lcgne")
+script = ExtResource("1_vauo1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=926962687]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1637235683]
+layout_mode = 2
+text = "Sensitivity:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1401141749]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=2113538206]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 30.0
+max_value = 150.0
+value = 50.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=33164116]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1526809542]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="defaults" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=2077951802]
+layout_mode = 2
+text = "restore defaults"
+
+[node name="save" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1067088248]
+layout_mode = 2
+text = "save settings"
+
+[node name="quit to main menu" type="Button" parent="VBoxContainer" unique_id=1938930591]
+layout_mode = 2
+text = "return"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/defaults" to="." method="_on_defaults_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit to main menu" to="." method="_on_quit_to_main_menu_pressed"]

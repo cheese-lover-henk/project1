@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://b54l16v12wu7m"]
+
+[ext_resource type="Theme" uid="uid://bq2xaeqbys6v8" path="res://menus/control_node_themes/menu_default_theme.tres" id="1_xbn2l"]
+[ext_resource type="Script" uid="uid://b7pue4h5sawwt" path="res://menus/main_menu/main_menu.gd" id="2_1nwmw"]
+[ext_resource type="FontFile" uid="uid://cmchttsahcxuq" path="res://menus/shared/fonts/alienencounters.ttf" id="3_vu5tu"]
+[ext_resource type="PackedScene" uid="uid://br7anpth3lvlv" path="res://menus/settings/settings_menu.tscn" id="4_ml8bw"]
+[ext_resource type="PackedScene" uid="uid://b7xd4v4n0evcg" path="res://menus/main_menu/leaderboard.tscn" id="5_oic2i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ml8bw"]
+font = ExtResource("3_vu5tu")
+font_size = 120
+font_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control" unique_id=1350486397]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xbn2l")
+script = ExtResource("2_1nwmw")
+
+[node name="MainMenu-CenterContainer" type="CenterContainer" parent="." unique_id=1457333907]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -622.5
+offset_top = -169.5
+offset_right = 622.5
+offset_bottom = 169.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu-CenterContainer" unique_id=1631591445]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Label" type="Label" parent="MainMenu-CenterContainer/VBoxContainer" unique_id=198291556]
+layout_mode = 2
+text = "PARKOUR GAME"
+label_settings = SubResource("LabelSettings_ml8bw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Tutorial" type="Button" parent="MainMenu-CenterContainer/VBoxContainer" unique_id=1484395675]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "PLAY TUTORIAL"
+
+[node name="Button_LVL1" type="Button" parent="MainMenu-CenterContainer/VBoxContainer" unique_id=522951870]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "PLAY LVL 1"
+
+[node name="Button_Testmap" type="Button" parent="MainMenu-CenterContainer/VBoxContainer" unique_id=1051351357]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "PLAY TESTMAP"
+
+[node name="Button_Settings" type="Button" parent="MainMenu-CenterContainer/VBoxContainer" unique_id=617198341]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "SETTINGS"
+
+[node name="Button_leaderboard" type="Button" parent="MainMenu-CenterContainer/VBoxContainer" unique_id=442187820]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "leaderboard"
+
+[node name="Button_quit" type="Button" parent="MainMenu-CenterContainer/VBoxContainer" unique_id=7105469]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "quit to desktop"
+
+[node name="SettingsMenu-CenterContainer" parent="." unique_id=402809060 instance=ExtResource("4_ml8bw")]
+layout_mode = 1
+
+[node name="Leaderboard" parent="." unique_id=2093315213 instance=ExtResource("5_oic2i")]
+layout_mode = 1
+
+[connection signal="pressed" from="MainMenu-CenterContainer/VBoxContainer/Button_Tutorial" to="." method="_on_button_tutorial_pressed"]
+[connection signal="pressed" from="MainMenu-CenterContainer/VBoxContainer/Button_LVL1" to="." method="_on_button_lvl_1_pressed"]
+[connection signal="pressed" from="MainMenu-CenterContainer/VBoxContainer/Button_Testmap" to="." method="_on_button_testmap_pressed"]
+[connection signal="pressed" from="MainMenu-CenterContainer/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="MainMenu-CenterContainer/VBoxContainer/Button_leaderboard" to="." method="_on_button_leaderboard_pressed"]
+[connection signal="pressed" from="MainMenu-CenterContainer/VBoxContainer/Button_quit" to="." method="_on_button_quit_pressed"]

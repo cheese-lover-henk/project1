@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dl5310lo1okcd"]
+
+[ext_resource type="Theme" uid="uid://bq2xaeqbys6v8" path="res://menus/control_node_themes/menu_default_theme.tres" id="1_rqnfx"]
+[ext_resource type="Script" uid="uid://dnvrrwjfib6qc" path="res://menus/ingame HUD/pausemenu.gd" id="2_qppf8"]
+[ext_resource type="PackedScene" uid="uid://br7anpth3lvlv" path="res://menus/settings/settings_menu.tscn" id="3_mt1fx"]
+
+[node name="PAUSEMENU" type="Control" unique_id=1275210326]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rqnfx")
+script = ExtResource("2_qppf8")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1931627724]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1830682600]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="resume" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1108769960]
+layout_mode = 2
+text = "resume"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer" unique_id=562978815]
+layout_mode = 2
+text = "settings"
+
+[node name="quit to main menu" type="Button" parent="CenterContainer/VBoxContainer" unique_id=651257768]
+layout_mode = 2
+text = "quit to main menu"
+
+[node name="SettingsMenu-CenterContainer" parent="." unique_id=402809060 instance=ExtResource("3_mt1fx")]
+layout_mode = 1
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/quit to main menu" to="." method="_on_quit_to_main_menu_pressed"]

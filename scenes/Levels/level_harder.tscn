@@ -1,0 +1,285 @@
+[gd_scene format=3 uid="uid://6qskrb7ly2w7"]
+
+[ext_resource type="Script" uid="uid://dwxqnljw54f6x" path="res://scenes/Levels/LevelScript.gd" id="1_prkq6"]
+[ext_resource type="Material" uid="uid://ccn2eg7su8my1" path="res://scenes/shared/materials/prototype/darkgray_triplanar_12.tres" id="2_6idn8"]
+[ext_resource type="Material" uid="uid://cs5nopjfdnym4" path="res://scenes/shared/materials/prototype/green_triplanar6.tres" id="3_vptmv"]
+[ext_resource type="Material" uid="uid://dhrnj4j62vqlw" path="res://scenes/shared/materials/prototype/orange_triplanar6.tres" id="4_ij6au"]
+[ext_resource type="Material" uid="uid://b47r78fj3cocx" path="res://scenes/shared/materials/prototype/darkgray_triplanar_6.tres" id="5_j22uk"]
+[ext_resource type="Material" uid="uid://cl2h6k6xq0idy" path="res://scenes/shared/materials/prototype/purple_triplanar5.tres" id="6_kdsdq"]
+[ext_resource type="PackedScene" uid="uid://bvabij88gqx" path="res://entities/player/player.tscn" id="7_6idn8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yyb7f"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ptgt0"]
+sky_material = SubResource("ProceduralSkyMaterial_yyb7f")
+
+[sub_resource type="Environment" id="Environment_ac15f"]
+background_mode = 2
+sky = SubResource("Sky_ptgt0")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o21ul"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtxvj"]
+size = Vector3(39, 39, 85)
+
+[node name="Level" type="Node3D" unique_id=1099281739 node_paths=PackedStringArray("spawnPoints")]
+script = ExtResource("1_prkq6")
+spawnPoints = {
+NodePath("respawnPoints/area1"): NodePath("respawnPoints/marker1"),
+NodePath("respawnPoints/area2"): NodePath("respawnPoints/marker2")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1360510256]
+environment = SubResource("Environment_ac15f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=599281932]
+transform = Transform3D(0.8660255, -0.43301263, 0.2499999, 2.7805944e-08, 0.49999994, 0.86602545, -0.49999994, -0.7500001, 0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="SHAPES" type="CSGCombiner3D" parent="." unique_id=1977627946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+use_collision = true
+
+[node name="start-platform" type="CSGBox3D" parent="SHAPES" unique_id=2144663724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+size = Vector3(4, 1, 6)
+material = ExtResource("2_6idn8")
+
+[node name="end-platform" type="CSGBox3D" parent="SHAPES" unique_id=1297851328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 11, -61)
+size = Vector3(4, 1, 4)
+material = ExtResource("3_vptmv")
+
+[node name="checkpoint" type="CSGBox3D" parent="SHAPES" unique_id=2038563115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, -40)
+size = Vector3(4, 1, 4)
+material = ExtResource("4_ij6au")
+
+[node name="platform2" type="CSGBox3D" parent="SHAPES" unique_id=580562736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -9)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform3" type="CSGBox3D" parent="SHAPES" unique_id=434698177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -14)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform10" type="CSGBox3D" parent="SHAPES" unique_id=695105430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -21)
+material = ExtResource("5_j22uk")
+
+[node name="platform4" type="CSGBox3D" parent="SHAPES" unique_id=580217029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, -18)
+size = Vector3(1, 5, 1)
+material = ExtResource("5_j22uk")
+
+[node name="platform5" type="CSGBox3D" parent="SHAPES" unique_id=721948593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -18)
+size = Vector3(1, 5, 1)
+material = ExtResource("5_j22uk")
+
+[node name="platform6" type="CSGBox3D" parent="SHAPES" unique_id=1092673456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -18)
+material = ExtResource("5_j22uk")
+
+[node name="platform7" type="CSGBox3D" parent="SHAPES" unique_id=937248008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, -18)
+material = ExtResource("5_j22uk")
+
+[node name="platform8" type="CSGBox3D" parent="SHAPES" unique_id=1839209570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 8.5, -48.5)
+size = Vector3(1, 4, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform9" type="CSGBox3D" parent="SHAPES" unique_id=269657167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 8.5, -48.5)
+size = Vector3(1, 4, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform11" type="CSGBox3D" parent="SHAPES" unique_id=1179445174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -46.5)
+size = Vector3(7, 1, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform15" type="CSGBox3D" parent="SHAPES" unique_id=1641036097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, -49.5)
+size = Vector3(3, 1, 4)
+material = ExtResource("5_j22uk")
+
+[node name="platform20" type="CSGBox3D" parent="SHAPES" unique_id=1815936072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -55)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform21" type="CSGBox3D" parent="SHAPES" unique_id=63773168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7, -60)
+size = Vector3(1, 1, 5)
+material = ExtResource("5_j22uk")
+
+[node name="platform24" type="CSGBox3D" parent="SHAPES" unique_id=813404621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -67)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform28" type="CSGBox3D" parent="SHAPES" unique_id=1268921]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 8, -71)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform29" type="CSGBox3D" parent="SHAPES" unique_id=399111424]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 9, -73)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform30" type="CSGBox3D" parent="SHAPES" unique_id=2024786158]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 10, -71)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform31" type="CSGBox3D" parent="SHAPES" unique_id=2000069006]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16, 10, -66)
+size = Vector3(1, 1, 3)
+material = ExtResource("5_j22uk")
+
+[node name="platform32" type="CSGBox3D" parent="SHAPES" unique_id=959942495]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -11.5, 10, -61)
+size = Vector3(1, 1, 4)
+material = ExtResource("5_j22uk")
+
+[node name="platform22" type="CSGBox3D" parent="SHAPES" unique_id=879874668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 8.014591, -59.003174)
+size = Vector3(1, 1, 0.35107422)
+material = ExtResource("5_j22uk")
+
+[node name="platform33" type="CSGBox3D" parent="SHAPES" unique_id=576331257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10.15527, -59.003174)
+size = Vector3(1, 1, 0.35107422)
+material = ExtResource("5_j22uk")
+
+[node name="platform23" type="CSGBox3D" parent="SHAPES" unique_id=1361949940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7302246, 9, -62)
+size = Vector3(0.46044922, 3, 1)
+material = ExtResource("5_j22uk")
+
+[node name="platform25" type="CSGBox3D" parent="SHAPES" unique_id=1604773098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.334086, 9, -62)
+size = Vector3(0.46044922, 3, 1)
+material = ExtResource("5_j22uk")
+
+[node name="platform26" type="CSGBox3D" parent="SHAPES" unique_id=49728547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7996554, 8, -62)
+size = Vector3(0.46044922, 1, 1)
+material = ExtResource("5_j22uk")
+
+[node name="platform27" type="CSGBox3D" parent="SHAPES" unique_id=862233552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7996554, 9, -62)
+size = Vector3(0.46044922, 1, 1)
+material = ExtResource("5_j22uk")
+
+[node name="platform12" type="CSGBox3D" parent="SHAPES" unique_id=366802283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 9.200195, -48.5)
+size = Vector3(1, 2.5996094, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform16" type="CSGBox3D" parent="SHAPES" unique_id=1460166661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 8.5, -48.5)
+size = Vector3(1, 4, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform17" type="CSGBox3D" parent="SHAPES" unique_id=1047569062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 9.200195, -48.5)
+size = Vector3(1, 2.5996094, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform18" type="CSGBox3D" parent="SHAPES" unique_id=1434370616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 8.5, -48.5)
+size = Vector3(1, 4, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform19" type="CSGBox3D" parent="SHAPES" unique_id=1418016305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.200195, -48.5)
+size = Vector3(1, 2.5996094, 2)
+material = ExtResource("5_j22uk")
+
+[node name="platform13" type="CSGBox3D" parent="SHAPES" unique_id=1207756342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -25.5)
+size = Vector3(0.1, 1, 4)
+material = ExtResource("6_kdsdq")
+
+[node name="platform14" type="CSGBox3D" parent="SHAPES" unique_id=1554206526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, -32.5)
+size = Vector3(0.1, 1, 4)
+material = ExtResource("6_kdsdq")
+
+[node name="SHAPES-no-collision" type="CSGCombiner3D" parent="." unique_id=1916395119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SHAPES-no-collision" unique_id=795933158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 6, -49.5)
+size = Vector3(4, 1, 4)
+material = ExtResource("5_j22uk")
+
+[node name="text" type="Node3D" parent="." unique_id=1632828518]
+
+[node name="?" type="Label3D" parent="text" unique_id=1328079789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 9, -47.45)
+double_sided = false
+text = "?"
+font_size = 150
+
+[node name="?2" type="Label3D" parent="text" unique_id=1165028939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 9, -47.45)
+double_sided = false
+text = "?"
+font_size = 150
+
+[node name="?3" type="Label3D" parent="text" unique_id=417210970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -47.45)
+double_sided = false
+text = "?"
+font_size = 150
+
+[node name="checkpointTriggers" type="Node3D" parent="." unique_id=1541793876]
+
+[node name="respawnPoints" type="Node3D" parent="." unique_id=708820572]
+
+[node name="InitialSpawn" type="Marker3D" parent="respawnPoints" unique_id=2025678501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
+
+[node name="marker1" type="Marker3D" parent="respawnPoints" unique_id=1731305502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -40)
+
+[node name="area1" type="Area3D" parent="respawnPoints" unique_id=1489927389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="respawnPoints/area1" unique_id=1942971669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_o21ul")
+
+[node name="marker2" type="Marker3D" parent="respawnPoints" unique_id=203328694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12, -61)
+
+[node name="area2" type="Area3D" parent="respawnPoints" unique_id=2057776632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12, -61)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="respawnPoints/area2" unique_id=373468168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_o21ul")
+
+[node name="Player" parent="." unique_id=1525292286 instance=ExtResource("7_6idn8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="LevelBounds" type="Area3D" parent="." unique_id=1868596335]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBounds" unique_id=1433985567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 10, -36.5)
+shape = SubResource("BoxShape3D_vtxvj")
+
+[connection signal="body_entered" from="respawnPoints/area2" to="." method="_on_area_2_body_entered"]
+[connection signal="body_exited" from="LevelBounds" to="." method="_on_level_bounds_body_exited"]

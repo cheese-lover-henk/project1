@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dc3qs8gdjkq1f"]
+
+[ext_resource type="Material" uid="uid://dhrnj4j62vqlw" path="res://scenes/shared/materials/prototype/orange_triplanar6.tres" id="1_2y4v7"]
+[ext_resource type="PackedScene" uid="uid://bvabij88gqx" path="res://entities/player/player.tscn" id="2_3wcey"]
+
+[node name="EasierLevel" type="Node3D" unique_id=442473290]
+
+[node name="Player" parent="." unique_id=1525292286 instance=ExtResource("2_3wcey")]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1793069506]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=607036137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(5, 1, 5)
+material = ExtResource("1_2y4v7")

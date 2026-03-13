@@ -1,0 +1,417 @@
+[gd_scene format=3 uid="uid://byls4w43lekyl"]
+
+[ext_resource type="Script" uid="uid://bq6nyq75r4n45" path="res://scenes/Levels/tutorial.gd" id="1_kvmro"]
+[ext_resource type="Material" uid="uid://dhrnj4j62vqlw" path="res://scenes/shared/materials/prototype/orange_triplanar6.tres" id="1_ywj6r"]
+[ext_resource type="PackedScene" uid="uid://bvabij88gqx" path="res://entities/player/player.tscn" id="2_ueuuf"]
+[ext_resource type="Material" uid="uid://cs5nopjfdnym4" path="res://scenes/shared/materials/prototype/green_triplanar6.tres" id="3_72fly"]
+[ext_resource type="Material" uid="uid://b47r78fj3cocx" path="res://scenes/shared/materials/prototype/darkgray_triplanar_6.tres" id="3_m3e6o"]
+[ext_resource type="Material" uid="uid://ccn2eg7su8my1" path="res://scenes/shared/materials/prototype/darkgray_triplanar_12.tres" id="4_84v0n"]
+[ext_resource type="Material" uid="uid://cl2h6k6xq0idy" path="res://scenes/shared/materials/prototype/purple_triplanar5.tres" id="4_drydf"]
+[ext_resource type="Material" uid="uid://cxytk2kcpehw0" path="res://scenes/shared/materials/prototype/red_triplanar6.tres" id="4_uqtm7"]
+[ext_resource type="PackedScene" uid="uid://dy23fh8kip4wf" path="res://scenes/shared/stuff/booster.tscn" id="4_vqkqv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3e6o"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_drydf"]
+sky_material = SubResource("ProceduralSkyMaterial_m3e6o")
+
+[sub_resource type="Environment" id="Environment_84v0n"]
+background_mode = 2
+sky = SubResource("Sky_drydf")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvmro"]
+size = Vector3(48, 70, 51)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0il6"]
+size = Vector3(4, 2, 6)
+
+[node name="Tutorial" type="Node3D" unique_id=1545583489 node_paths=PackedStringArray("spawnPoints")]
+script = ExtResource("1_kvmro")
+spawnPoints = {
+NodePath("respawnpoints/Area3D"): NodePath("respawnpoints/Marker3D"),
+NodePath("respawnpoints/Area3D2"): NodePath("respawnpoints/Marker3D2"),
+NodePath("respawnpoints/Area3D3"): NodePath("respawnpoints/Marker3D3")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2046784905]
+environment = SubResource("Environment_84v0n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1130318335]
+transform = Transform3D(-5.4619797e-08, 0.86602545, -0.49999994, 2.7805944e-08, 0.49999994, 0.86602545, 1, 8.052851e-09, -5.1658013e-08, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1382282067]
+transform = Transform3D(0.8660254, -0.43301278, 0.24999996, 2.7805948e-08, 0.49999994, 0.86602545, -0.5, -0.75, 0.43301266, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1525292286 instance=ExtResource("2_ueuuf")]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1970171978]
+use_collision = true
+
+[node name="floor" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1782652412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -1)
+size = Vector3(4, 1, 5)
+material = ExtResource("1_ywj6r")
+
+[node name="floor3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1439605927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -0.5, 11.5)
+size = Vector3(5, 1, 6)
+material = ExtResource("1_ywj6r")
+
+[node name="floor2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=350409717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -1.5, 1.5)
+size = Vector3(11, 1, 10)
+material = ExtResource("1_ywj6r")
+
+[node name="floor4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=732110164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -1.5, 22)
+size = Vector3(5, 1, 11)
+material = ExtResource("1_ywj6r")
+
+[node name="floor5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=372303025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -2.5, 35)
+size = Vector3(5, 1, 11)
+material = ExtResource("1_ywj6r")
+
+[node name="floor8" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2026432009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -1.5, 35)
+size = Vector3(5, 1, 11)
+material = ExtResource("1_ywj6r")
+
+[node name="floor9" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1821402269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0.5, 22.5)
+size = Vector3(5, 1, 6)
+material = ExtResource("1_ywj6r")
+
+[node name="floor10" type="CSGBox3D" parent="CSGCombiner3D" unique_id=856241723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1.5, 15)
+size = Vector3(5, 1, 5)
+material = ExtResource("3_72fly")
+
+[node name="BOOSTER" parent="CSGCombiner3D/floor10" unique_id=152046244 instance=ExtResource("4_vqkqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5046418, 0)
+
+[node name="floor6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2137936233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2.5, 37)
+size = Vector3(15, 1, 3)
+material = ExtResource("1_ywj6r")
+
+[node name="floor7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1540559480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -2.5, 37)
+size = Vector3(3, 1, 7)
+material = ExtResource("1_ywj6r")
+
+[node name="wall1" type="CSGBox3D" parent="CSGCombiner3D" unique_id=172222572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -3)
+size = Vector3(4, 3, 1)
+material = ExtResource("3_m3e6o")
+
+[node name="Label3D" type="Label3D" parent="CSGCombiner3D/wall1" unique_id=331742670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.016431332, 0.54999995)
+text = "WASSUP bro
+
+welcome to the tutorial
+first some basic stuff:
+WASD to move
+hold shift to sprint
+and tap spacebar to jump
+(hold to jump a little bit higher)
+very easy, you got this!"
+
+[node name="Label3D3" type="Label3D" parent="CSGCombiner3D/wall1" unique_id=1668956884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2004285, 0.3761406, 0.54999995)
+text = "go try it out"
+
+[node name="Label3D2" type="Label3D" parent="CSGCombiner3D/wall1" unique_id=2142588447]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.2044535, 0.016431332, 0.54999995)
+text = "|
+\\/"
+font_size = 50
+line_spacing = -30.0
+
+[node name="wall2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=317218289]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1.5, 11.5)
+size = Vector3(1, 3, 6)
+material = ExtResource("3_m3e6o")
+
+[node name="Label3D2" type="Label3D" parent="CSGCombiner3D/wall2" unique_id=427611747]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5100002, 0, -1)
+text = "good job buddy
+i knew you could do it"
+
+[node name="Label3D3" type="Label3D" parent="CSGCombiner3D/wall2" unique_id=1352627373]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5100002, 0, 1)
+text = "now some advanced stuff:
+crouch and slide.
+tap C to toggle crouch,
+and do that while sprinting
+to start sliding.
+try it out:"
+
+[node name="Label3D4" type="Label3D" parent="CSGCombiner3D/wall2" unique_id=947042156]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1.9106855e-15, -0.5100002, -0.5759077, 1.5245752)
+text = "|
+\\/"
+line_spacing = -30.0
+
+[node name="wall6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1692462356]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -21, 0.5, 37.5)
+size = Vector3(1, 3, 6)
+material = ExtResource("3_m3e6o")
+
+[node name="Label3D2" type="Label3D" parent="CSGCombiner3D/wall6" unique_id=24975002]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -0.5100002, 0.4882083, -1.2245178)
+text = "thats all you really need
+ to know to be honest"
+
+[node name="Label3D5" type="Label3D" parent="CSGCombiner3D/wall6" unique_id=1306557597]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -0.5100002, -0.5117917, -1.2245178)
+text = "you also have a flashlight
+turn on or off with T
+its a bit useless though
+
++ press f3 for debug info"
+
+[node name="Label3D3" type="Label3D" parent="CSGCombiner3D/wall6" unique_id=1757288211]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -0.5100002, 0, 1.2281609)
+text = "go play one of the two maps!
+or stay in the tutorial if you want
+
+press esc -> exit to main menu
+to leave."
+
+[node name="wall5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=934197521]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 11.5, -0.5, 40)
+size = Vector3(1, 3, 6)
+material = ExtResource("3_m3e6o")
+
+[node name="Label3D2" type="Label3D" parent="CSGCombiner3D/wall5" unique_id=1884664365]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5099983, 0, -1.3462858)
+text = "that was pretty easy
+as well im sure"
+
+[node name="Label3D3" type="Label3D" parent="CSGCombiner3D/wall5" unique_id=874381880]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.51000214, 0, 1.209631)
+text = "now some even more advanced stuff:
+the vaulting thingie
+run up to a window,
+and  jump + hold space 
+a bit before you bump into it!
+"
+
+[node name="Label3D4" type="Label3D" parent="CSGCombiner3D/wall5" unique_id=716727815]
+transform = Transform3D(-4.371139e-08, 0, -1, 1, -4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 3.5527137e-15, -0.51000214, -0.79409695, 1.5245752)
+text = "|
+\\/"
+line_spacing = -30.0
+
+[node name="redobstacle" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1210783348]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, -0.5, 37)
+size = Vector3(3, 3, 0.2)
+material = ExtResource("4_uqtm7")
+
+[node name="gap" type="CSGBox3D" parent="CSGCombiner3D/redobstacle" unique_id=2093367698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050209045, 0.54871404, 0)
+operation = 2
+size = Vector3(2.1103668, 1.4951172, 0.2)
+
+[node name="redobstacle2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1983778428]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, -0.5, 37)
+size = Vector3(5, 3, 0.2)
+material = ExtResource("4_uqtm7")
+
+[node name="gap" type="CSGBox3D" parent="CSGCombiner3D/redobstacle2" unique_id=582391469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050209045, 0.54871404, 0)
+operation = 2
+size = Vector3(2.1103668, 1.4951172, 0.2)
+
+[node name="redobstacle3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1511050279]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, -0.5, 37)
+size = Vector3(5, 3, 0.2)
+material = ExtResource("4_uqtm7")
+
+[node name="gap" type="CSGBox3D" parent="CSGCombiner3D/redobstacle3" unique_id=398146313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050209045, 0.54871404, 0)
+operation = 2
+size = Vector3(2.1103668, 1.4951172, 0.2)
+
+[node name="redobstacle4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=98199240]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, -0.5, 37)
+size = Vector3(5, 3, 0.2)
+material = ExtResource("4_uqtm7")
+
+[node name="gap" type="CSGBox3D" parent="CSGCombiner3D/redobstacle4" unique_id=1095133909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050209045, 0.54871404, 0)
+operation = 2
+size = Vector3(2.1103668, 1.4951172, 0.2)
+
+[node name="wall3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=564528309]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.5, 0.5, 22.5)
+size = Vector3(1, 3, 2)
+material = ExtResource("3_m3e6o")
+
+[node name="Label3D2" type="Label3D" parent="CSGCombiner3D/wall3" unique_id=1235159699]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.51, 0, 0.5)
+text = "short tunnel"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/wall3" unique_id=1605511279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.91, 0.5)
+operation = 2
+size = Vector3(1, 1.1806641, 1)
+material = ExtResource("4_84v0n")
+
+[node name="wall4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=391713355]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 11, 0.5, 24)
+size = Vector3(4, 3, 3)
+material = ExtResource("3_m3e6o")
+
+[node name="Label3D3" type="Label3D" parent="CSGCombiner3D/wall4" unique_id=608285558]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.01, 0, 0)
+text = "long tunnel"
+
+[node name="Label3D4" type="Label3D" parent="CSGCombiner3D/wall4" unique_id=236674918]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 0.5, 0.5, -1.501)
+text = "if you crouched
+through this one, try going back
+and sliding as well! its much faster
+and cooler and nicer and cooler!
+remember:
+to slide, press C while sprinting"
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/wall4" unique_id=1305982759]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.91, 0)
+operation = 2
+size = Vector3(4, 1.1806641, 1)
+material = ExtResource("4_84v0n")
+
+[node name="ramp" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=213290360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 1.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 5.0
+material = ExtResource("1_ywj6r")
+
+[node name="ramp2" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=2106467720]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.5, -1, 8.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 5.0
+material = ExtResource("1_ywj6r")
+
+[node name="ramp3" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=369524999]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.5, -1, 14.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 5.0
+material = ExtResource("1_ywj6r")
+
+[node name="ramp4" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1021238685]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.5, -2, 27.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 5.0
+material = ExtResource("1_ywj6r")
+
+[node name="ramp5" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1845993665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, -2, 40.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 7.0
+material = ExtResource("1_ywj6r")
+
+[node name="ramp6" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1115394369]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.5, -1, 27.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 5.0
+material = ExtResource("1_ywj6r")
+
+[node name="ramp7" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1204889534]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.5, 0, 25.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 5.0
+material = ExtResource("1_ywj6r")
+
+[node name="ramp8" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1727318193]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.5, 1, 17.5)
+polygon = PackedVector2Array(0, 0, 0, 1, 2, 0, 2, -1)
+depth = 5.0
+material = ExtResource("1_ywj6r")
+
+[node name="obstacle1" type="CSGBox3D" parent="CSGCombiner3D" unique_id=797278392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -0.5, -1)
+material = ExtResource("4_drydf")
+
+[node name="obstacle4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=20550887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2.5, 18)
+material = ExtResource("4_84v0n")
+
+[node name="obstacle2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=153535262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, -0.5)
+size = Vector3(2, 2, 2)
+material = ExtResource("4_drydf")
+
+[node name="obstacle3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=510832627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0.5, 3.5)
+size = Vector3(2, 3, 2)
+material = ExtResource("4_drydf")
+
+[node name="Label3D" type="Label3D" parent="CSGCombiner3D/obstacle3" unique_id=995430045]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.01, 0, 0)
+text = "try to get on top of
+this box!
+(very difficult)"
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=137726534]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5, -2, 37)
+polygon = PackedVector2Array(-1.5, -1.5, -1.5, 1.5, 1.5, 3.5, 1.5, -3.5)
+material = ExtResource("1_ywj6r")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=452972328]
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -13, -2, 37)
+polygon = PackedVector2Array(-1.5, -1.5, -1.5, 1.5, 1.5, 3.5, 1.5, -3.5)
+material = ExtResource("1_ywj6r")
+
+[node name="levelbounds" type="Area3D" parent="." unique_id=2063585288]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="levelbounds" unique_id=911240287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 24.5, 18)
+shape = SubResource("BoxShape3D_kvmro")
+
+[node name="respawnpoints" type="Node3D" parent="." unique_id=1827517012]
+
+[node name="initialSpawn" type="Marker3D" parent="respawnpoints" unique_id=1367524127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.061196566, 0)
+
+[node name="Area3D" type="Area3D" parent="respawnpoints" unique_id=1213270783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 11)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="respawnpoints/Area3D" unique_id=456219412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46100903, 1.5, 0.5)
+shape = SubResource("BoxShape3D_r0il6")
+
+[node name="Marker3D" type="Marker3D" parent="respawnpoints" unique_id=506669217]
+transform = Transform3D(-0.67133254, 0, -0.7411563, 0, 1, 0, 0.7411563, 0, -0.67133254, 10.617269, 0.08245289, 10.804934)
+
+[node name="Area3D2" type="Area3D" parent="respawnpoints" unique_id=2134196552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -2, 35)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="respawnpoints/Area3D2" unique_id=1878654044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46100903, 1.5, 0.5)
+shape = SubResource("BoxShape3D_r0il6")
+
+[node name="Marker3D2" type="Marker3D" parent="respawnpoints" unique_id=55976811]
+transform = Transform3D(-0.7411563, 0, 0.6713326, 0, 1, 0, -0.6713326, 0, -0.7411563, 12.617269, -1.9175471, 35.80493)
+
+[node name="Area3D3" type="Area3D" parent="respawnpoints" unique_id=627551812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.621664, -0.6140679, 37)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="respawnpoints/Area3D3" unique_id=1820300732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46100903, 1.5, 0.5)
+shape = SubResource("BoxShape3D_r0il6")
+
+[node name="Marker3D3" type="Marker3D" parent="respawnpoints" unique_id=299934527]
+transform = Transform3D(-0.67133254, 0, -0.7411563, 0, 1, 0, 0.7411563, 0, -0.67133254, -18.004396, -0.531615, 38.80493)
+
+[connection signal="body_exited" from="levelbounds" to="." method="_on_levelbounds_body_exited"]

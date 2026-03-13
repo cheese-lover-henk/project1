@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b7xd4v4n0evcg"]
+
+[ext_resource type="Script" uid="uid://cqaosnscnfrfb" path="res://menus/main_menu/leaderboard.gd" id="1_3f1e8"]
+
+[node name="Leaderboard" type="CenterContainer" unique_id=2093315213]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3f1e8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1894720730]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=586965432]
+layout_mode = 2
+
+[node name="returnButton" type="Button" parent="VBoxContainer" unique_id=161648568]
+layout_mode = 2
+text = "return"
+
+[connection signal="pressed" from="VBoxContainer/returnButton" to="." method="_on_return_button_pressed"]

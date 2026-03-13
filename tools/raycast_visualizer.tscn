@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b1am5ws6ekqtn"]
+
+[ext_resource type="Script" uid="uid://pwa8jdf0s4js" path="res://tools/raycastvisualizer.gd" id="1_2tq17"]
+[ext_resource type="Material" uid="uid://dvhgtgfrcaiim" path="res://scenes/shared/materials/plain-colors/red.tres" id="2_codqf"]
+[ext_resource type="Material" uid="uid://cuxf44o6518yk" path="res://scenes/shared/materials/plain-colors/grey.tres" id="3_yc3w0"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_codqf"]
+top_radius = 0.05
+bottom_radius = 0.01
+height = 0.01
+
+[node name="RaycastVisualizer" type="Node3D" unique_id=812793228]
+script = ExtResource("1_2tq17")
+active_material = ExtResource("2_codqf")
+inactive_material = ExtResource("3_yc3w0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1176355709]
+mesh = SubResource("CylinderMesh_codqf")

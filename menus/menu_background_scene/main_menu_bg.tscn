@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c7noqhf6bblos"]
+
+[ext_resource type="Script" uid="uid://bokk0ki5u5d2s" path="res://menus/menu_background_scene/main_menu_bg.gd" id="1_5qfld"]
+[ext_resource type="PackedScene" uid="uid://b54l16v12wu7m" path="res://menus/main_menu/main_menu.tscn" id="2_hvi3q"]
+[ext_resource type="PackedScene" uid="uid://bryncnktjsejf" path="res://scenes/testmap/test_map.tscn" id="2_oawov"]
+
+[node name="MainMenuBG" type="Node3D" unique_id=1711128374]
+script = ExtResource("1_5qfld")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1145966594]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -12, 11, 8)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D" unique_id=844018983]
+
+[node name="MainMenu" parent="Camera3D/CanvasLayer" unique_id=1350486397 instance=ExtResource("2_hvi3q")]
+
+[node name="TestMap" parent="." unique_id=1864558569 instance=ExtResource("2_oawov")]
